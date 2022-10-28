@@ -7,12 +7,12 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        //validaredad()
-        //tablamulti()
-        //listado()
+        validaredad()
+        tablamulti()
+        listado()
         propiedadesAutomoviles()
+        cedula()
     }
-
     //Validar si una persona es mayor o menor de edad
     fun validaredad(){
         val edad = 20
@@ -56,15 +56,36 @@ class MainActivity : AppCompatActivity() {
         }
         fun code(){
             for (i in traccion){
-                println("El vehiculo tiene las siguientes caracteristicas" + i)
+                println("La traccion del Vehiculo es:" + i)
             }
         }
     }
     fun propiedadesAutomoviles(){
-        val automovil = propiedade(arrayOf(propiedade.Traccion.Delantero),motor = "Diésel", tipo = "Todoterreno", capacidad = 4)
+        val carro = propiedade(arrayOf(propiedade.Traccion.Delantero),motor = "Diésel", tipo = "Todoterreno", capacidad = 4)
         println("Automovil")
-        println("Motor: ${automovil.motor} \n Capacidad: ${automovil.capacidad}\"")
-        automovil.code()
-    }
+        carro.code()
+        println("Motor: ${carro.motor} \n Tipo: ${carro.tipo} \n Capacidad: ${carro.capacidad}\"")
 
+    }
+    //Cedula
+    private fun cedula(){
+        var cedula = intArrayOf(1,1,0,4,2,5,5,3,8,3)
+        var validar = intArrayOf(2,1,2,1,2,1,2,1,2)
+        var cont = 0
+        var suma = 0
+        for (x in validar){
+            var res = x * cedula[cont]
+            cont += 1
+            if (res > 9){
+                var aux1 = res.toString()
+                res = Character.getNumericValue(aux1.get(0)) + Character.getNumericValue(aux1.get(1))
+            }
+            suma += res
+        }
+        if (cedula[9] == (suma % 10) || cedula[9] == 10 - (suma % 10)){
+            println("Cedula Correcta")
+        }else{
+            println("Cedula Incorrecta")
+        }
+    }
 }
